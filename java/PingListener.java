@@ -25,21 +25,14 @@ public class PingListener extends ListenerAdapter
 			//if not staff
 			if(!StopListener.isStaff(e.getMember()))
 			{
+				e.getMessage().delete().queue(); //delete message
 				e.getGuild().addRoleToMember(e.getMember().getId(), muted).queue(); //give them the muted role
 				Main.unmutes.schedule(new UnmuteTask(e.getMember().getId()), 2, TimeUnit.HOURS); //schedule an unmute in 2 hours
+				
+				//send messages
 				e.getChannel().sendMessage("Please do not ping Wilbur- you have been tempmuted for 2 hours").queue();
 				logs.sendMessage(":mute: " + e.getAuthor().getAsTag() + " (" + e.getMember().getId() + ") muted by " + 
 						e.getJDA().getSelfUser().getAsTag() + " for 2h, for reason \"Pinging Wilbur\"").queue();
-			}
-		}
-		
-		for(Member m : e.getMessage().getMentionedMembers())
-		{
-			if(m.getRoles().contains(friends))
-			{
-				e.getChannel().sendMessage("Hi " + e.getMember().getAsMention() + ":) Please do not ping Wilbur's friends, we try to keep that to a minimum in this server and would"
-						+ " appreciate it if you did not do this :)").queue();
-				return;
 			}
 		}
 	}
