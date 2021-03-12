@@ -39,24 +39,10 @@ public class StopListener extends ListenerAdapter
 			if(m.hasPermission(Permission.ADMINISTRATOR))
 				return true;
 			
-			//if discord mod TODO: Make discord mod module for all servers
-			switch(m.getGuild().getId())
+			for(Role r : m.getRoles())
 			{
-				case "565623426501443584" : //wilbur's discord
-					for(Role r : m.getRoles())
-					{
-						if(r.getId().equals("565626094917648386")) //wilbur discord mod
-							return true;
-					}
-					break;
-					
-				case "640254333807755304" : //charlie's server
-					for(Role r : m.getRoles())
-					{
-						if(r.getId().equals("640255355401535499")) //charlie discord mod
-							return true;
-					}
-					break;
+				if(r.getId().equals("565626094917648386") || r.getId().equals("751506678683533333")) //wilbur discord mod
+					return true;
 			}
 			
 			return false;
