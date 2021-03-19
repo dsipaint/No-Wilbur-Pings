@@ -42,7 +42,7 @@ public class PingListener extends ListenerAdapter
 					//send messages
 					e.getChannel().sendMessage("Please do not ping " + creator.getName() + "- you have been tempmuted for 2 hours").queue();
 					logs.sendMessage(":mute: " + e.getAuthor().getAsTag() + " (" + e.getMember().getId() + ") muted by " + 
-							e.getJDA().getSelfUser().getAsTag() + " for 2h, for reason \"Pinging" +  creator.getName() + "\"").queue();
+							e.getJDA().getSelfUser().getAsTag() + " for 2h, for reason \"Pinging " +  creator.getName() + "\"").queue();
 				}
 			}
 		}
